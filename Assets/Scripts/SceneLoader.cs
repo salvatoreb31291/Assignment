@@ -5,22 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+    public AudioClip background2;
     public void LoadLevel(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
 
+    
+
     public void LoadNextScene()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-
+        if(currentSceneIndex==0){
         SceneManager.LoadScene(currentSceneIndex + 1);
+        }
+        if(currentSceneIndex==1){
+        SceneManager.LoadScene(3);
+        }
     }
+ 
 
-    public void Quit()
-    {
-        UnityEditor.EditorApplication.isPlaying = false;
+    void Start() {
+            Music.Instance.PlayMusic(background2);
     }
-
-   
 }
